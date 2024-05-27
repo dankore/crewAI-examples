@@ -1,41 +1,54 @@
+import os
 from textwrap import dedent
 from crewai import Agent
+from langchain.llms import Ollama
 
-class GameAgents():
-	def senior_engineer_agent(self):
-		return Agent(
-			role='Senior Software Engineer',
-			goal='Create software as needed',
-			backstory=dedent("""\
-				You are a Senior Software Engineer at a leading tech think tank.
-				Your expertise in programming in python. and do your best to
-				produce perfect code"""),
-			allow_delegation=False,
-			verbose=True
-		)
+class GameAgents:
+    def __init__(self):
+        self.llm = Ollama(model="llama3")
 
-	def qa_engineer_agent(self):
-		return Agent(
-			role='Software Quality Control Engineer',
-  		goal='create prefect code, by analizing the code that is given for errors',
-  		backstory=dedent("""\
-				You are a software engineer that specializes in checking code
-  			for errors. You have an eye for detail and a knack for finding
-				hidden bugs.
-  			You check for missing imports, variable declarations, mismatched
-				brackets and syntax errors.
-  			You also check for security vulnerabilities, and logic errors"""),
-			allow_delegation=False,
-			verbose=True
-		)
+    def senior_engineer_agent(self):
+        return Agent(
+            role='Senior Software Engineer',
+            llm=self.llm,
+            goal='Develop and deliver software solutions as required',
+            backstory=dedent("""\
+                You are a Senior Software Engineer at a renowned tech think tank.
+                Your expertise in Python programming enables you to produce
+                high-quality, efficient, and maintainable code.
+            """),
+            allow_delegation=False,
+            verbose=True
+        )
 
-	def chief_qa_engineer_agent(self):
-		return Agent(
-			role='Chief Software Quality Control Engineer',
-  		goal='Ensure that the code does the job that it is supposed to do',
-  		backstory=dedent("""\
-				You feel that programmers always do only half the job, so you are
-				super dedicate to make high quality code."""),
-			allow_delegation=True,
-			verbose=True
-		)
+    def qa_engineer_agent(self):
+        return Agent(
+            role='Software Quality Control Engineer',
+            llm=self.llm,
+            goal='Ensure the creation of flawless code by analyzing and identifying errors',
+            backstory=dedent("""\
+                You are a Software Quality Control Engineer specializing in 
+                code analysis and error detection. Your keen eye for detail 
+                allows you to identify hidden bugs and ensure code integrity.
+                You meticulously check for missing imports, variable declarations,
+                mismatched brackets, syntax errors, security vulnerabilities,
+                and logical flaws.
+            """),
+            allow_delegation=False,
+            verbose=True
+        )
+
+    def chief_qa_engineer_agent(self):
+        return Agent(
+            role='Chief Software Quality Control Engineer',
+            llm=self.llm,
+            goal='Guarantee that the code performs its intended functions flawlessly',
+            backstory=dedent("""\
+                You are dedicated to ensuring that programmers produce complete,
+                high-quality code. Your commitment to excellence drives you to 
+                thoroughly evaluate and improve the codebase, ensuring it meets 
+                all functional requirements and standards.
+            """),
+            allow_delegation=True,
+            verbose=True
+        )
