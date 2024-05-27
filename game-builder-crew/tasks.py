@@ -5,7 +5,7 @@ class GameTasks:
     def code_task(self, agent, game):
         return Task(
             description=dedent(f"""\
-                You will create a game using Python. Please follow the instructions below:
+                You will create a game using Python. Follow the instructions below:
 
                 Instructions
                 ------------
@@ -19,7 +19,7 @@ class GameTasks:
     def review_task(self, agent, game):
         return Task(
             description=dedent(f"""\
-                You are assisting in the creation of a game using Python. Please follow the instructions below:
+                You are assisting in the creation of a game using Python. Follow the instructions below:
 
                 Instructions
                 ------------
@@ -41,7 +41,7 @@ class GameTasks:
     def evaluate_task(self, agent, game):
         return Task(
             description=dedent(f"""\
-                You are evaluating the creation of a game using Python. Please follow the instructions below:
+                You are evaluating the creation of a game using Python. Follow the instructions below:
 
                 Instructions
                 ------------

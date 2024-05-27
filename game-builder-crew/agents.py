@@ -1,7 +1,7 @@
 import os
 from textwrap import dedent
 from crewai import Agent
-from langchain.llms import Ollama
+from langchain_community.llms import Ollama
 
 class GameAgents:
     def __init__(self):
